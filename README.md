@@ -1,5 +1,5 @@
 # zipmgr
-A pure Swift library for reading and extracting .zip archives
+A pure Swift library for reading, extracting, and creating .zip archives
 
 ## Installation
 Add zipmgr to your SwiftPM dependencies in Package.swift:
@@ -39,6 +39,14 @@ if let entry = archive["example.txt"] {
     let contents = try archive.extract(entry)
     print("extracted \(entry.path), bytes: \(contents.count)")
 }
+```
+
+### Create an archive
+```swift
+let dir = FileManager.default.temporaryDirectory.appendingPathComponent("folder")
+let out = FileManager.default.temporaryDirectory.appendingPathComponent("archive.zip")
+
+try createZipArchive(fromDirectory: dir, to: out)
 ```
 
 ### One-liner example
